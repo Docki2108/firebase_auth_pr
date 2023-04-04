@@ -65,6 +65,7 @@ class Enter extends StatelessWidget {
 
 class EnterPage extends StatefulWidget {
   const EnterPage({super.key});
+  static const String route = "/Change/EnterPage";
 
   @override
   State<EnterPage> createState() => _EnterPageState();

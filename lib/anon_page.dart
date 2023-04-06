@@ -18,6 +18,7 @@ class _AnonPageState extends State<AnonPage> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Anon'),
             OutlinedButton(

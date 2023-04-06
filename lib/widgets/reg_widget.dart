@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class RegWidget extends StatefulWidget {
   const RegWidget({super.key});
@@ -16,6 +14,9 @@ class _RegWidgetState extends State<RegWidget> {
   late FocusNode btn_contNode;
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   final _loginformKey = GlobalKey<FormState>();
   final _passwordformKey = GlobalKey<FormState>();
@@ -37,6 +38,9 @@ class _RegWidgetState extends State<RegWidget> {
 
     loginController.dispose();
     passwordController.dispose();
+
+    nameController.dispose();
+    phoneController.dispose();
     super.dispose();
   }
 
@@ -97,16 +101,28 @@ class _RegWidgetState extends State<RegWidget> {
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: ButtonTheme(
               child: OutlinedButton(
-                onPressed: () {
+                onPressed: () async {
                   signUp();
                 },
                 focusNode: btn_contNode,
                 child: const Text('Зарегистрироваться'),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: ButtonTheme(
+              child: OutlinedButton(
+                onPressed: () async {
+                  signIn();
+                },
+                focusNode: btn_contNode,
+                child: const Text('Войти'),
               ),
             ),
           ),
@@ -117,8 +133,13 @@ class _RegWidgetState extends State<RegWidget> {
 
   Future signUp() async {
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: loginController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+        email: loginController.text.trim(),
+        password: passwordController.text.trim());
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: loginController.text.trim(),
+        password: passwordController.text.trim());
   }
 }

@@ -20,7 +20,7 @@ Future<void> main() async {
       initialRoute: Change.route,
       routes: {
         EnterPage.route: (BuildContext context) => const EnterPage(),
-        Change.route: (BuildContext context) => const Change(),
+        Change.route: (BuildContext context) => Change(),
         AnonPage.route: (BuildContext context) => AnonPage(),
       },
     ),

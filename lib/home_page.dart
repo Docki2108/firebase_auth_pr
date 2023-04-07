@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_pr/photosss.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'cats_page.dart';
+import 'photos_page.dart';
 
 class HomePage extends StatelessWidget {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
@@ -137,6 +139,17 @@ class HomePage extends StatelessWidget {
       bottomSheet: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => photosssPage(),
+                ),
+              );
+            },
+            child: const Text('Photos page'),
+          ),
           OutlinedButton(
             onPressed: () {
               signOut();
@@ -158,9 +171,6 @@ class HomePage extends StatelessWidget {
     return users.add({
       'uid': userAuth.uid,
       'email': userAuth.email!,
-
-      // 'name': userAuth.displayName!,
-      // 'phone': userAuth.phoneNumber!,
     });
   }
 
@@ -170,10 +180,9 @@ class HomePage extends StatelessWidget {
     return users.add({
       'uid': userAuth.uid,
       'email': userAuth.email!,
-      'age': ageController.text.trim(), 'height': heightController.text.trim(),
+      'age': ageController.text.trim(),
+      'height': heightController.text.trim(),
       'weight': weightController.text.trim(),
-      // 'name': userAuth.displayName!,
-      // 'phone': userAuth.phoneNumber!,
     });
   }
 
@@ -188,8 +197,6 @@ class HomePage extends StatelessWidget {
         'age': ageController.text.trim(),
         'height': heightController.text.trim(),
         'weight': weightController.text.trim(),
-        // 'name': userAuth.displayName!,
-        // 'phone': userAuth.phoneNumber!,
       },
     );
   }
